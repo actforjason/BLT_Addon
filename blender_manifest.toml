@@ -1,0 +1,13 @@
+schema_version = "1.0.3"
+
+blender_version_min = "4.2.0"
+id = "BLT_Addon"
+license = ["Copyright (C) 2020 PJ PENG", ]
+maintainer = "Keshi, pjwaixingren, 小萌新"
+name = "BLT"
+tagline = "This addon use to BLT Software"
+type = "add-on"
+version = "2024.11.21"
+tags = ["UI", "TRANSLATE"]
+website = "https://blt.qa.pjcgart.com/questions/108"
+platforms = ["windows-x64", "macos-arm64", "linux-x64"]
