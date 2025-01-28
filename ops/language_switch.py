@@ -22,7 +22,7 @@ class LanguageSwitch(Operator):
             view.language = self.language_id
             view.use_translate_tooltips = False
             view.use_translate_interface = False
-            view.use_translate_new_dataname = False
+
 
         if pref.tooltips_included:
             view.use_translate_tooltips = not view.use_translate_interface
@@ -32,8 +32,6 @@ class LanguageSwitch(Operator):
 
         view.use_translate_interface = not view.use_translate_interface
 
-        if hasattr(view, "use_translate_new_dataname"):
-            view.use_translate_new_dataname = False
 
         # 更新工作空间界面
         update_workspace_name()
