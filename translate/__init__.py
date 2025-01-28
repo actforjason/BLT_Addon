@@ -25,8 +25,8 @@ BLT_INFO_PATH = os.path.join(BLT_PATH, "info")  # BLT info 路径
 BLT_MO_INFO_PATH = os.path.join(BLT_PATH, "Mo_UpdateVersion.txt")
 BLT_DATAFILES_PATH = os.path.join(BLT_PATH, "datafiles")  # BLT datafiles 路径
 BLT_LOCALE_PATH = os.path.join(BLT_DATAFILES_PATH, "locale")  # BLT locale 路径
-
 blender_local = os.path.join(os.path.dirname(bpy.app.binary_path), BLENDER_BASE_VERSION, "datafiles", "locale")# 当前版本blender local路径
+
 def is_enabled_global_translation() -> bool:
     """是否已启用全局翻译
     :return: bool
@@ -88,7 +88,7 @@ def enable_global_translation(forced: bool = False):
 
 def __copy_blender_mo_to_global__():
     """复制当前Blender的所有Mo到全局文件夹"""
-    blender_local = os.path.join(os.path.dirname(bpy.app.binary_path), BLENDER_BASE_VERSION, "datafiles", "locale")
+    
     if IS_MAC:
         print("Mac !! TODO Move Mo")
         print(blender_local)
@@ -99,6 +99,6 @@ def __copy_blender_mo_to_global__():
 
 def __copy_languages_file__():
     """复制BLT的languages文件到全局文件夹"""
-    source = os.path.join(blender_local, 'languages')
+    source = os.path.join(ADDON_LOCALE_PATH, 'languages')
     target = os.path.join(BLENDER_GLOBAL_LOCALE_PATH, "languages")
     shutil.copyfile(source, target)
