@@ -19,13 +19,13 @@ BLENDER_BASE_VERSION = f"{BV[0]}.{BV[1]}"  # Blender 版本号
 BLENDER_GLOBAL_VERSION_PATH = f"{BLENDER_GLOBAL_PATH}" if IS_PORTABLE else f"{BLENDER_GLOBAL_PATH}/{BLENDER_BASE_VERSION}"  # Blender 全局版本路径
 BLENDER_GLOBAL_DATAFILE_PATH = os.path.join(BLENDER_GLOBAL_VERSION_PATH, "datafiles")  # Blender 全局 datafiles 路径
 BLENDER_GLOBAL_LOCALE_PATH = os.path.join(BLENDER_GLOBAL_DATAFILE_PATH, "locale")  # Blender 全局 locale 路径
+blender_local = os.path.join(os.path.dirname(bpy.app.binary_path), BLENDER_BASE_VERSION, "datafiles", "locale")# 当前blender程序中local路径
 
-BLT_PATH = os.path.join(BLENDER_GLOBAL_PATH, "BLT_translation_Dicts")  # BLT 路径
-BLT_INFO_PATH = os.path.join(BLT_PATH, "info")  # BLT info 路径
+BLT_PATH = os.path.join(BLENDER_GLOBAL_PATH, "BLT_translation_Dicts")  # BLTDicts 路径
+BLT_INFO_PATH = os.path.join(BLT_PATH, "info")  # BLTDicts info 路径
 BLT_MO_INFO_PATH = os.path.join(BLT_PATH, "Mo_UpdateVersion.txt")
-BLT_DATAFILES_PATH = os.path.join(BLT_PATH, "datafiles")  # BLT datafiles 路径
-BLT_LOCALE_PATH = os.path.join(BLT_DATAFILES_PATH, "locale")  # BLT locale 路径
-blender_local = os.path.join(os.path.dirname(bpy.app.binary_path), BLENDER_BASE_VERSION, "datafiles", "locale")# 当前版本blender local路径
+BLT_DATAFILES_PATH = os.path.join(BLT_PATH, "datafiles")  # BLTDicts datafiles 路径
+BLT_LOCALE_PATH = os.path.join(BLT_DATAFILES_PATH, "locale")  # BLTDicts locale 路径
 
 def is_enabled_global_translation() -> bool:
     """是否已启用全局翻译
