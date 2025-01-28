@@ -1,7 +1,7 @@
 import bpy
 from bpy.types import Operator
 
-from ..translate.wprkspace import update_workspace_name
+from ..translate.workspacecn import update_workspace_name
 from ..utils.public import get_pref
 
 

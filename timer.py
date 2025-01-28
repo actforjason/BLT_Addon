@@ -3,7 +3,7 @@ import threading
 import bpy
 from bpy.app.handlers import persistent
 
-from .translate.wprkspace import update_workspace_name
+from .translate.workspacecn import update_workspace_name
 
 
 @persistent
