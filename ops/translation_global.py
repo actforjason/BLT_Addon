@@ -11,7 +11,7 @@ from ..translate import (
 class TranslationGlobal(Operator):
     bl_idname = "blt.translation_global"
     bl_label = "全局翻译本地插件"
-    bl_description = "全局翻译本地插件(五分钟内重复点击仅下载翻译文件一次)"
+    bl_description = "调用词典翻译插件(五分钟内重复点击仅下载翻译文件一次)"
     bl_options = {'INTERNAL'}
 
     @property
@@ -36,5 +36,5 @@ class TranslationGlobal(Operator):
                 traceback.print_stack()
                 traceback.print_exc()
                 print(e.args)
-                self.report({'ERROR'}, "网络有问题...可以请尝试换个网络, 如手机USB连接或手机WIFI分享!")
+                self.report({'ERROR'}, "网络有问题...可以尝试换个网络, 如手机USB共享或手机热点!")
         return {'FINISHED'}

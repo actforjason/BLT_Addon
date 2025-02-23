@@ -10,29 +10,31 @@ class Preferences(AddonPreferences):
     bl_idname = ADDON_NAME
 
     tabs: EnumProperty(items=[("GTRANSLATION", "全局翻译[GT]", "全局翻译"),
-                              ("QTRANSLATION", "一键翻译[QT]", "一键翻译"),
+                              ("QTRANSLATION", "语言切换按钮[QT]", "语言切换按钮"),
                               ("LINKS", "相关链接[LK]", "相关链接")],
                        name="选项卡",
                        description="设置选项卡")
 
     button_toggle: BoolProperty(
-        name="一键翻译",
-        description="启动/禁用一键翻译按钮.\n"
-                    "PS: 翻译按钮显示在顶栏上",
+        name="双语切换",
+        description="启动/禁用语言切换按钮按钮.\n"
+                    "PS: 切换按钮显示在顶栏上",
         default=True
     )
 
     tooltips_included: BoolProperty(
         name="工具提示",
-        description="使用一键翻译进行切换时将影响工具提示的切换.\n"
+        description="切换时将影响工具提示的切换.\n"
                     "PS: 默认已影响界面的切换",
         default=True
     )
 
     use_translate_reports: BoolProperty(
         name="报告",
+        description="切换时将影响报告的切换.\n"
+                    "PS: 默认已影响报告的切换",
         default=True
-    )
+    ) 
 
     last_check_update_time: StringProperty(name="上次检查更新时间", default="0")
 
@@ -54,13 +56,13 @@ class Preferences(AddonPreferences):
 
         row = layout.row(align=True)
         row.operator("blt.translation_global",
-                     text="已启用全局翻译" if enabled else "未启用全局翻译",
+                     text="翻译已启用" if enabled else "点击启用翻译",
                      icon='FILE_REFRESH',
                      depress=enabled)
 
         message = layout.row()
         message.alignment = 'CENTER'
-        message.label(text="启用或禁用全局翻译后, 重启 Blender 后生效!!!")
+        message.label(text="启用或禁用全局翻译后, 需要重启Blender!!!")
         column = layout.box().column()
 
         from .mo_update import mo_info
@@ -79,7 +81,7 @@ class Preferences(AddonPreferences):
         layout = self.layout
         box = layout.box()
         row = box.row()
-        row.label(text="一键翻译:")
+        row.label(text="语言切换按钮:")
         row.prop(self, "button_toggle", text="启用")
         split = box.split()
         split.active = self.button_toggle

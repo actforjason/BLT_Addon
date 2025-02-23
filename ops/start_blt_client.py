@@ -31,8 +31,8 @@ def blt_is_running():
 
 class StartBltClient(Operator):
     bl_idname = "blt.start_blt_client"
-    bl_label = "启动 BLT 客户端"
-    bl_description = "一键启动 BLT 客户端"
+    bl_label = "启动 BLT 程序"
+    bl_description = "一键启动 BLT.EXE"
 
     # IS_RUNNING = False
     #
@@ -49,7 +49,7 @@ class StartBltClient(Operator):
         # 获取客户端位置并运行
         client = get_blt_client_exe_path_from_info()
         if not client:
-            self.report({'ERROR'}, "你还没有安装或使用过BLT, 请先下载并运行BLT !!")
+            self.report({'ERROR'}, "你还没有安装或使用过BLT程序, 请先下载并运行BLT.exe !!")
         else:
             subprocess.Popen(client)
             self.report({'INFO'}, "BLT已经被启动, 请耐心等待.")
