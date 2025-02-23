@@ -10,14 +10,14 @@ class Preferences(AddonPreferences):
     bl_idname = ADDON_NAME
 
     tabs: EnumProperty(items=[("GTRANSLATION", "全局翻译[GT]", "全局翻译"),
-                              ("QTRANSLATION", "语言切换按钮[QT]", "语言切换按钮"),
+                              ("QTRANSLATION", "双语切换[QT]", "语言切换按钮"),
                               ("LINKS", "相关链接[LK]", "相关链接")],
                        name="选项卡",
                        description="设置选项卡")
 
     button_toggle: BoolProperty(
         name="双语切换",
-        description="启动/禁用语言切换按钮按钮.\n"
+        description="启动/禁用语言切换按钮.\n"
                     "PS: 切换按钮显示在顶栏上",
         default=True
     )
