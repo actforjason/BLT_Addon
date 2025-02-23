@@ -38,7 +38,7 @@ def draw_header(self, context):
 
         # 文本区块
         box = row.box()  # 添加外框
-        box.label(text="Status")  # 将 label 放在 box 中
+        box.label(text="BLTStatus")  # 将 label 放在 box 中
 def register():
     bpy.types.TOPBAR_HT_upper_bar.append(draw_header)
 
