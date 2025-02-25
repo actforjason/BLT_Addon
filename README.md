@@ -10,7 +10,9 @@ https://www.bilibili.com/video/BV1MA4y1D7Jb/
 #### 使用说明
 
 https://www.bilibili.com/video/BV1CvpEe3EdR/
-
+#### BLT程序端常见问题
+![alt text](BLT.exe.png)
+https://docs.qq.com/sheet/DS0RPV0xRS2RxR0ti?tab=BB08J2
 #### 参与贡献
 
 1.  Fork 本仓库
