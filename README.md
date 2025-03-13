@@ -11,9 +11,10 @@ https://www.bilibili.com/video/BV1MA4y1D7Jb/
 
 https://www.bilibili.com/video/BV1CvpEe3EdR/
 #### BLT程序端常见问题
-![alt text](BLT.exe.png)
+![alt text](BLT.exe.png) 
 https://docs.qq.com/sheet/DS0RPV0xRS2RxR0ti?tab=BB08J2  
-wiindows客户端下载地址https://pan.baidu.com/s/1o2-oQcnRf5Ivvx-xNoJpJA#list/path=%2F
+wiindows客户端下载地址  
+https://pan.baidu.com/s/1o2-oQcnRf5Ivvx-xNoJpJA#list/path=%2F
 #### 参与贡献
 
 1.  Fork 本仓库
