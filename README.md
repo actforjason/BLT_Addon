@@ -2,14 +2,12 @@
 
 #### 介绍
 用于补全blender翻译的插件
-
 #### 安装教程
-
 https://www.bilibili.com/video/BV1MA4y1D7Jb/
 更新前建议关闭全局翻译 卸载旧版插件
 #### 使用说明
-
 https://www.bilibili.com/video/BV1CvpEe3EdR/
+点击链接加入腾讯频道【BLT】：https://pd.qq.com/s/9g1zdrkyo
 #### BLT程序端常见问题
 ![alt text](BLT.exe.png)  
 https://docs.qq.com/sheet/DS0RPV0xRS2RxR0ti?tab=BB08J2  
