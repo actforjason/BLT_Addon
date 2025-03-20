@@ -51,6 +51,10 @@ class StartBltClient(Operator):
         if not client:
             self.report({'ERROR'}, "你还没有安装或使用过BLT程序, 请先下载并运行BLT.exe !!")
         else:
-            subprocess.Popen(client)
-            self.report({'INFO'}, "BLT已经被启动, 请耐心等待.")
+            # 检查文件是否存在
+            if not os.path.isfile(client):
+                self.report({'ERROR'}, f"指定的BLT可执行文件: {client}不存在，请下载BLT程序或者在BLT程序中重新设置blender路径")
+            else:
+                subprocess.Popen(client)
+                self.report({'INFO'}, "BLT已经被启动, 请耐心等待.")
         return {'FINISHED'}
