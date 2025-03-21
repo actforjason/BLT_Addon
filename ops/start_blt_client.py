@@ -1,7 +1,8 @@
 """BLT 客户端"""
 import os
 import subprocess
-from functools import cache
+from functools import lru_cache
+cache = lru_cache(maxsize=None)  # 手动定义等效的缓存装饰器兼容旧版本python
 
 from bpy.types import Operator
 
