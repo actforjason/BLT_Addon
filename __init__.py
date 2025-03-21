@@ -9,7 +9,7 @@ bl_info = {
     "name": "BLT",
     "description": "This addon use to BLT Software",
     "author": "Keshi, pjwaixingren, 小萌新",
-    "version": (2025, 3, 20),
+    "version": (2025, 3, 22),
     "blender": (3, 0, 0),
     "location": "Menu BlT",
     "wiki_url": "https://www.pjcgart.com",
