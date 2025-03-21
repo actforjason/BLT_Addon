@@ -75,7 +75,7 @@ class Preferences(AddonPreferences):
                     else:
                         column.label(text=item)
         else:
-            column.label(text="无法加载数据")
+            column.label(text="更新日志未能加载")
 
     def draw_workspace_translation(self, context):
         layout = self.layout
