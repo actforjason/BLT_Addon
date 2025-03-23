@@ -98,7 +98,7 @@ def __copy_blender_mo_to_global__():
 
 
 def __copy_languages_file__():
-    """复制BLT的languages文件到全局文件夹"""
+    """复制当前Blender的languages文件到全局文件夹"""
     source = os.path.join(blender_local, 'languages')
     target = os.path.join(BLENDER_GLOBAL_LOCALE_PATH, "languages")
     shutil.copyfile(source, target)
