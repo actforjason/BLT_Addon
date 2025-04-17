@@ -9,8 +9,9 @@ https://www.bilibili.com/video/BV1MA4y1D7Jb/
 https://www.bilibili.com/video/BV1CvpEe3EdR/
 点击链接加入腾讯频道【BLT】：https://pd.qq.com/s/9g1zdrkyo
 #### BLT程序端常见问题
-![alt text](BLT.exe.png)  
-https://docs.qq.com/sheet/DS0RPV0xRS2RxR0ti?tab=BB08J2  
+![alt text](BLT.exe.png)
+https://docs.qq.com/sheet/DS0RPV0xRS2RxR0ti?tab=BB08J2 
+https://blt.qa.pjcgart.com/questions/108 教程
 wiindows客户端下载地址  
 https://pan.baidu.com/s/1o2-oQcnRf5Ivvx-xNoJpJA#list/path=%2F
 #### 参与贡献
