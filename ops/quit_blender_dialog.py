@@ -1,3 +1,4 @@
+import os
 import bpy
 
 from ..translate import is_enabled_global_translation
@@ -21,8 +22,9 @@ class QuitBlenderDialog(bpy.types.Operator):
 
     def execute(self, context):
         start_blender()
-        bpy.ops.wm.window_close()
         bpy.ops.wm.quit_blender()
+        # 使用 os._exit(0) 确保 Blender 安全退出
+        os._exit(0)
         return {'FINISHED'}
 
     def invoke(self, context, event):

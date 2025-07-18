@@ -19,15 +19,29 @@ def update_mo_info():
     global mo_info, mo_version, is_updatable
     if os.path.exists(BLT_MO_INFO_PATH):
         with open(BLT_MO_INFO_PATH, "r", encoding="utf-8") as file:
-            mo_version = float(file.readline().replace("Version:", "").replace("\n", ""))
+            # 修改为字符串分割方式解析版本号
+            local_version_str = file.readline().replace("Version:", "").replace("\n", "")
+            mo_version = list(map(int, local_version_str.split('.')))  # 支持 1.5.1 这样的三位版本号
             mo_info = file.readlines()
 
         response = request.urlopen(mo_info_web_path)
         data = response.read()
         data_str = data.decode("utf-8")
-        cloud_version = float(data_str.split("\n")[0].replace("Version:", "").replace("\n", ""))
-        is_updatable = mo_version < cloud_version
-        print(f"Blt check mo_info mo_version:{mo_version} cloud_version:{cloud_version} is_updatable:{is_updatable}")
+        # 同样修改为字符串分割方式解析云端版本号
+        cloud_version_str = data_str.split("\n")[0].replace("Version:", "").replace("\n", "")
+        cloud_version = list(map(int, cloud_version_str.split('.')))
+        
+        # 逐位比较版本号
+        is_updatable = False
+        # 确保比较时取较小的长度，避免索引越界
+        min_len = min(len(cloud_version), len(mo_version))
+        for i in range(min_len):
+            if cloud_version[i] > mo_version[i]:
+                is_updatable = True
+                break
+            elif cloud_version[i] < mo_version[i]:
+                break
+        print(f"Blt check mo_info mo_version:{local_version_str} cloud_version:{cloud_version_str} is_updatable:{is_updatable}")
 
     t = time.time()
     get_pref().last_check_update_time = str(t)
