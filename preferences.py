@@ -1,9 +1,12 @@
 import bpy
-from bpy.props import EnumProperty, BoolProperty, StringProperty
+from bpy.props import EnumProperty, BoolProperty, StringProperty, PointerProperty
 from bpy.types import AddonPreferences
 
 from .translate import is_enabled_global_translation
 from .utils import ADDON_NAME
+
+# 添加全局变量存储快捷键
+addon_keymaps = []
 
 
 class Preferences(AddonPreferences):
@@ -36,7 +39,56 @@ class Preferences(AddonPreferences):
         default=True
     ) 
 
+    # 添加快捷键设置属性
+    language_switch_key: StringProperty(
+        name="快捷键",
+        description="语言切换快捷键",
+        default="NONE"
+    )
+    
+    language_switch_ctrl: BoolProperty(
+        name="Ctrl",
+        description="是否需要Ctrl键",
+        default=False
+    )
+    
+    language_switch_shift: BoolProperty(
+        name="Shift",
+        description="是否需要Shift键",
+        default=False
+    )
+    
+    language_switch_alt: BoolProperty(
+        name="Alt",
+        description="是否需要Alt键",
+        default=False
+    )
+
     last_check_update_time: StringProperty(name="上次检查更新时间", default="0")
+    
+    # 存储上一次的快捷键设置
+    _last_keymap_settings = None
+    
+    def update_keymap(self):
+        """更新快捷键设置"""
+        wm = bpy.context.window_manager
+        kc = wm.keyconfigs.addon
+        if not kc:
+            return
+            
+        # 只更新已存在的快捷键项
+        if addon_keymaps:
+            km, kmi = addon_keymaps[0]  # 获取第一个快捷键项（语言切换）
+            # 更新修饰键
+            kmi.ctrl = self.language_switch_ctrl
+            kmi.shift = self.language_switch_shift
+            kmi.alt = self.language_switch_alt
+            
+            # 更新按键
+            if self.language_switch_key != "NONE":
+                kmi.type = self.language_switch_key
+            else:
+                kmi.type = 'NONE'
 
     def draw_global_translation(self, context):
         from .mo_update import is_updatable
@@ -79,6 +131,9 @@ class Preferences(AddonPreferences):
 
     def draw_workspace_translation(self, context):
         layout = self.layout
+        # 检查是否需要更新快捷键
+        self.check_keymap_update()
+        
         box = layout.box()
         row = box.row()
         row.label(text="语言切换按钮:")
@@ -90,9 +145,23 @@ class Preferences(AddonPreferences):
         view = context.preferences.view
         if hasattr(view, "use_translate_reports"):
             split.prop(self, "use_translate_reports")
-
+            
+        # 添加快捷键设置
+        box = layout.box()
+        col = box.column()
+        col.label(text="快捷键设置:")
+        row = col.row()
+        row.prop(self, "language_switch_ctrl", text="Ctrl")
+        row.prop(self, "language_switch_shift", text="Shift")
+        row.prop(self, "language_switch_alt", text="Alt")
+        row = col.row()
+        row.prop(self, "language_switch_key", text="按键")
+        row = col.row()
+        row.label(text="提示: 修改设置后点击其他区域自动应用", icon='INFO')
     def draw_links(self, context):
         layout = self.layout
+        # 检查是否需要更新快捷键
+        self.check_keymap_update()
 
         box = layout.box()
         about_title = box.row()
@@ -109,6 +178,20 @@ class Preferences(AddonPreferences):
         urls = box.row()
         urls.operator("wm.url_open", text="帮助文档").url = "https://blt.qa.pjcgart.com/questions/108"
         urls.operator("wm.url_open", text="问答平台").url = "https://blt.qa.pjcgart.com/"
+        
+    def check_keymap_update(self):
+        """检查快捷键设置是否需要更新"""
+        current_settings = (
+            self.language_switch_key,
+            self.language_switch_ctrl,
+            self.language_switch_shift,
+            self.language_switch_alt
+        )
+        
+        # 如果设置发生变化，则更新快捷键
+        if self._last_keymap_settings != current_settings:
+            self._last_keymap_settings = current_settings
+            self.update_keymap()
 
     def draw(self, context):
         layout = self.layout
@@ -123,10 +206,51 @@ class Preferences(AddonPreferences):
             self.draw_links(context)
         layout.separator()
 
+def register_keymaps():
+    """注册快捷键"""
+    wm = bpy.context.window_manager
+    kc = wm.keyconfigs.addon
+    if kc:
+        km = kc.keymaps.new(name='Window', space_type='EMPTY', region_type='WINDOW')
+        kmi = km.keymap_items.new("blt.language_switch", 
+                                  type='NONE',  # 不设置默认按键
+                                  value='PRESS')
+        
+        addon_keymaps.append((km, kmi))
+        
+        # 从偏好设置中读取默认快捷键设置
+        try:
+            pref = bpy.context.preferences.addons[ADDON_NAME].preferences
+            if pref:
+                kmi.ctrl = pref.language_switch_ctrl
+                kmi.shift = pref.language_switch_shift
+                kmi.alt = pref.language_switch_alt
+                if pref.language_switch_key != "NONE":
+                    kmi.type = pref.language_switch_key
+        except:
+            pass
+
+
+def unregister_keymaps():
+    """注销快捷键"""
+    wm = bpy.context.window_manager
+    kc = wm.keyconfigs.addon
+    if kc:
+        for km, kmi in addon_keymaps:
+            km.keymap_items.remove(kmi)
+    addon_keymaps.clear()
+
+
+
+
 
 def register():
     bpy.utils.register_class(Preferences)
+    # 注册快捷键
+    register_keymaps()
 
 
 def unregister():
     bpy.utils.unregister_class(Preferences)
+    # 注销快捷键
+    unregister_keymaps()

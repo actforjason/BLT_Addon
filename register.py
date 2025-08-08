@@ -4,8 +4,9 @@ from . import preferences
 from . import property
 from . import server
 from . import src
-from . import timer
 from . import ui
+from .utils import ADDON_NAME
+import bpy
 
 module_list = (
     preferences,
@@ -14,7 +15,6 @@ module_list = (
     ops,
     server,
     ui,
-    timer,
     mo_update
 )
 
@@ -27,3 +27,4 @@ def register():
 def unregister():
     for module in module_list:
         module.unregister()
+
