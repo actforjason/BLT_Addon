@@ -16,6 +16,7 @@ module_list = (
     ops,
     server,
     ui,
+    timer,
     mo_update
 )
 
