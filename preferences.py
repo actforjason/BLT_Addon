@@ -141,6 +141,12 @@ class Preferences(AddonPreferences):
                      icon='FILE_REFRESH',
                      depress=enabled)
 
+        # 添加显示BLT状态的文本
+        status_row = layout.row()
+        status_row.alignment = 'CENTER'
+        status_row.label(text="BLT状态:")
+        status_row.label(text="BLTStatus")
+
         message = layout.row()
         message.alignment = 'CENTER'
         message.label(text="启用或禁用全局翻译后, 需要重启Blender!!!")
