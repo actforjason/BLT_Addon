@@ -36,9 +36,6 @@ def draw_header(self, context):
             r.alert = True
             r.label(text=f"BLT全局翻译可更新!!!! :>")
 
-        # 文本区块
-        box = row.box()  # 添加外框
-        box.label(text="BLTStatus")  # 将 label 放在 box 中
 def register():
     bpy.types.TOPBAR_HT_upper_bar.append(draw_header)
 
