@@ -4,9 +4,10 @@ from . import preferences
 from . import property
 from . import server
 from . import src
+from . import timer
 from . import ui
 from .utils import ADDON_NAME
-import bpy
+
 
 module_list = (
     preferences,
