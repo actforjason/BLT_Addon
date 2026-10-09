@@ -36,8 +36,8 @@ def draw_header(self, context):
             r.label(text=f"BLT全局翻译可更新!!!! :>")
 
 def register():
-    bpy.types.TOPBAR_HT_upper_bar.append(draw_header)
+    bpy.types.TOPBAR_MT_editor_menus.append(draw_header)
 
 
 def unregister():
-    bpy.types.TOPBAR_HT_upper_bar.remove(draw_header)
+    bpy.types.TOPBAR_MT_editor_menus.remove(draw_header)
