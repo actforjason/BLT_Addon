@@ -18,11 +18,10 @@ def draw_header(self, context):
     from ..mo_update import is_updatable
     if context.region.alignment != 'RIGHT':
         row = self.layout.row(align=True)
-        if IS_WINDOW:
-            """绘制BLT按钮"""
-            blt_icon = Icons.get("BLT").icon_id
-            row.operator(StartBltClient.bl_idname, text="", icon_value=blt_icon)
-
+        # if IS_WINDOW:
+        #     """绘制BLT按钮"""
+        #     blt_icon = Icons.get("BLT").icon_id
+        #     row.operator(StartBltClient.bl_idname, text="", icon_value=blt_icon)
 
         
         if get_pref().button_toggle:
