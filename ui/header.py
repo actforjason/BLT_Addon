@@ -35,9 +35,13 @@ def draw_header(self, context):
             r.alert = True
             r.label(text=f"BLT全局翻译可更新!!!! :>")
 
-def register():
+def deferred_register():
     bpy.types.TOPBAR_MT_editor_menus.append(draw_header)
+    return None # 返回 None 表示计时器仅执行一次
 
+def register():
+    # 延迟 0.1 秒注册菜单
+    bpy.app.timers.register(deferred_register, first_interval=0.1)
 
 def unregister():
     bpy.types.TOPBAR_MT_editor_menus.remove(draw_header)
